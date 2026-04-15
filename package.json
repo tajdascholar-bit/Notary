@@ -9,10 +9,13 @@
     "server:dev": "nodemon server/index.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@tailwindcss/vite": "^4.2.2",
+    "@vercel/blob": "^2.3.3",
     "better-sqlite3": "^12.9.0",
     "concurrently": "^9.2.1",
     "cors": "^2.8.6",

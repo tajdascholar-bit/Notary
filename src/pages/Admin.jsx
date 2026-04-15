@@ -156,15 +156,11 @@ function SubmissionDrawer({ submission, adminPw, onClose, onUpdated }) {
     onClose()
   }
 
-  const downloadFile = (storedName) => {
-    const a = document.createElement('a')
-    a.href = `/api/files/${storedName}?submission_id=${submission.id}&email=${encodeURIComponent(submission.client_email)}`
-    // Use admin header via a workaround — open in new tab with admin password in header isn't possible from browser;
-    // instead we'll set a cookie-like approach via a signed URL token. For simplicity we embed admin pw in query.
-    a.href = `/api/files/${storedName}?admin_pw=${adminPw}`
-    a.download = storedName
-    a.click()
-  }
+  /** Build download href: Vercel Blob URLs are direct; local files go via the API. */
+  const fileHref = (storedName) =>
+    storedName.startsWith('http')
+      ? storedName                                      // Vercel Blob CDN (prod)
+      : `/api/files/${storedName}?admin_pw=${adminPw}` // local dev
 
   const originalDocs = submission.documents?.filter(d => d.doc_type === 'original') || []
   const notarizedDocs = submission.documents?.filter(d => d.doc_type === 'notarized') || []
@@ -271,7 +267,7 @@ function SubmissionDrawer({ submission, adminPw, onClose, onUpdated }) {
                       <p className="text-xs text-gray-500">{formatBytes(doc.size_bytes)} · {formatDate(doc.uploaded_at)}</p>
                     </div>
                     <a
-                      href={`/api/files/${doc.stored_name}?admin_pw=${adminPw}`}
+                      href={fileHref(doc.stored_name)}
                       download={doc.original_name}
                       className="text-blue-700 hover:text-blue-800 text-sm font-semibold"
                     >
@@ -327,7 +323,7 @@ function SubmissionDrawer({ submission, adminPw, onClose, onUpdated }) {
                       <p className="text-xs text-gray-500">{formatBytes(doc.size_bytes)} · {formatDate(doc.uploaded_at)}</p>
                     </div>
                     <a
-                      href={`/api/files/${doc.stored_name}?admin_pw=${adminPw}`}
+                      href={fileHref(doc.stored_name)}
                       download={doc.original_name}
                       className="text-green-700 hover:text-green-800 text-sm font-semibold"
                     >

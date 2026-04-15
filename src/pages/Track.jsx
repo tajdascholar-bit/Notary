@@ -219,7 +219,11 @@ export default function Track() {
                         <p className="text-xs text-gray-500">{formatBytes(doc.size_bytes)}</p>
                       </div>
                       <a
-                        href={`/api/files/${doc.stored_name}?submission_id=${submission.id}&email=${encodeURIComponent(email)}`}
+                        href={
+                          doc.stored_name.startsWith('http')
+                            ? doc.stored_name                         // Vercel Blob URL (prod)
+                            : `/api/files/${doc.stored_name}?submission_id=${submission.id}&email=${encodeURIComponent(email)}`
+                        }
                         download={doc.original_name}
                         className="flex items-center gap-1.5 bg-green-700 hover:bg-green-800 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors"
                       >
