@@ -35,11 +35,11 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:bg-blue-700 transition-colors">
-              <span className="text-white font-black text-lg">N</span>
+              <span className="text-white font-black text-lg">D</span>
             </div>
             <div className="leading-tight">
               <p className={`font-black text-base ${transparent ? 'text-white' : 'text-gray-900'}`}>
-                Notary Solutions
+                Dickerson Mobile Notary
               </p>
               <p className={`text-xs font-semibold ${transparent ? 'text-blue-200' : 'text-blue-600'}`}>
                 Galveston County, TX

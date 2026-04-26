@@ -75,7 +75,7 @@ export default function About() {
               <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Our Story</p>
               <h2 className="text-4xl font-black text-gray-900 mb-6">Built for Galveston County's Business Community</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>Notary Solutions Galveston County was founded on a simple belief: Galveston County businesses deserve a notary partner who treats every signing with the same care and urgency their clients do.</p>
+                <p>Dickerson Mobile Notary was founded on a simple belief: Galveston County businesses deserve a notary partner who treats every signing with the same care and urgency their clients do.</p>
                 <p>After seeing closings delayed, loan packages rejected, and law firms struggling to find reliable coverage, we set out to do it right — training to the highest industry standards and building our practice around B2B client needs.</p>
                 <p>Today, we serve title companies, law firms, mortgage lenders, and businesses across Galveston County. Our clients trust us because we've earned it — one signing at a time.</p>
               </div>

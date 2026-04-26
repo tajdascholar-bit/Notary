@@ -17,7 +17,7 @@ const stats = [
 
 const reviews = [
   { name: 'Sarah M.', company: 'Premier Title Co.', initials: 'SM', color: 'bg-blue-600', text: 'Extremely professional and always on time. Our go-to notary for all closings in the Galveston County area.' },
-  { name: 'James L.', company: 'Anderson & Partners Law', initials: 'JL', color: 'bg-indigo-600', text: "Fast, reliable, and thorough. We've used Notary Solutions for dozens of legal document signings." },
+  { name: 'James L.', company: 'Anderson & Partners Law', initials: 'JL', color: 'bg-indigo-600', text: "Fast, reliable, and thorough. We've used Dickerson Mobile Notary for dozens of legal document signings." },
   { name: 'Maria R.', company: 'First Horizon Mortgage', initials: 'MR', color: 'bg-violet-600', text: 'Same-day service saved us multiple times. Their loan signing expertise is unmatched.' },
 ]
 
