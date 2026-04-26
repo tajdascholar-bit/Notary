@@ -65,7 +65,7 @@ export default function Services() {
               Every Notary Service Your Business Needs
             </h1>
             <p className="text-slate-300 text-xl leading-relaxed mb-8">
-              Fully certified, insured, and available same-day throughout Greater Houston.
+              Fully certified, insured, and available same-day throughout Galveston County.
             </p>
             <Link to="/contact" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-black px-8 py-4 rounded-2xl text-lg transition-all hover:-translate-y-0.5">
               Book a Signing Today
@@ -140,7 +140,7 @@ export default function Services() {
       <section className="bg-slate-950 py-20">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-black text-white mb-4">Need a Notary Today?</h2>
-          <p className="text-slate-400 text-lg mb-8">Same-day availability throughout Houston. Book online in minutes.</p>
+          <p className="text-slate-400 text-lg mb-8">Same-day availability throughout Galveston County. Book online in minutes.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="bg-amber-500 hover:bg-amber-400 text-white font-black px-8 py-4 rounded-2xl text-lg transition-all">
               Book Appointment

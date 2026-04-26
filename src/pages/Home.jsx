@@ -16,7 +16,7 @@ const stats = [
 ]
 
 const reviews = [
-  { name: 'Sarah M.', company: 'Premier Title Co.', initials: 'SM', color: 'bg-blue-600', text: 'Extremely professional and always on time. Our go-to notary for all closings in the Houston area.' },
+  { name: 'Sarah M.', company: 'Premier Title Co.', initials: 'SM', color: 'bg-blue-600', text: 'Extremely professional and always on time. Our go-to notary for all closings in the Galveston County area.' },
   { name: 'James L.', company: 'Anderson & Partners Law', initials: 'JL', color: 'bg-indigo-600', text: "Fast, reliable, and thorough. We've used Notary Solutions for dozens of legal document signings." },
   { name: 'Maria R.', company: 'First Horizon Mortgage', initials: 'MR', color: 'bg-violet-600', text: 'Same-day service saved us multiple times. Their loan signing expertise is unmatched.' },
 ]
@@ -34,13 +34,13 @@ export default function Home() {
         <div className="relative z-10 text-white text-center px-4 max-w-5xl mx-auto pt-24">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-5 py-2 text-sm font-semibold mb-8">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            Available for Same-Day Appointments · Houston, TX
+            Available for Same-Day Appointments · Galveston County, TX
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
             Trusted Notary
             <span className="block text-blue-400">Services for</span>
-            <span className="block">Houston Businesses</span>
+            <span className="block">Galveston County Businesses</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -198,7 +198,7 @@ export default function Home() {
 
       {/* ── STATS ── */}
       <section className="relative py-20 overflow-hidden">
-        <img src={IMG.city} alt="Houston city" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={IMG.city} alt="Galveston County" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-blue-950/90" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -262,7 +262,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Client Reviews</p>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Trusted by Houston Professionals</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Trusted by Galveston County Professionals</h2>
             <div className="flex justify-center gap-1 mb-3">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
@@ -304,7 +304,7 @@ export default function Home() {
             Ready to Get<br />Started Today?
           </h2>
           <p className="text-slate-300 text-xl mb-10">
-            Book a signing or upload your documents now. Same-day service available throughout Houston.
+            Book a signing or upload your documents now. Same-day service available throughout Galveston County.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="bg-amber-500 hover:bg-amber-400 text-white font-black px-10 py-4 rounded-2xl text-lg shadow-2xl transition-all hover:-translate-y-0.5">

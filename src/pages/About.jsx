@@ -19,7 +19,7 @@ const values = [
   { title: 'Reliability You Can Count On', desc: "We show up on time, every time. If there's ever an issue, we communicate proactively — never leaving you guessing." },
   { title: 'Professionalism at Every Signing', desc: 'Dressed professionally, respectful of your clients, fully prepared with every document handled carefully.' },
   { title: 'Precision With Documents', desc: "We understand the legal significance of every document we notarize. Errors cost time and money — we prevent them." },
-  { title: 'Houston-First Commitment', desc: "We live and work here. We know Houston's real estate market, legal community, and business landscape intimately." },
+  { title: 'Galveston County-First Commitment', desc: "We live and work here. We know Galveston County's real estate market, legal community, and business landscape intimately." },
 ]
 
 const platforms = ['Snapdocs', '123Notary', 'Notary Rotary', 'ServiceLink', 'Yelp', 'Thumbtack']
@@ -35,10 +35,10 @@ export default function About() {
           <div className="max-w-2xl">
             <p className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-4">About Us</p>
             <h1 className="text-5xl md:text-6xl font-black text-white mb-5 leading-tight">
-              Trusted Notary Professionals Serving Houston
+              Trusted Notary Professionals Serving Galveston County
             </h1>
             <p className="text-slate-300 text-xl leading-relaxed">
-              Certified, insured, and experienced — built to be the most dependable notary service for businesses in Greater Houston.
+              Certified, insured, and experienced — built to be the most dependable notary service for businesses in Galveston County.
             </p>
           </div>
         </div>
@@ -68,16 +68,16 @@ export default function About() {
               </div>
               <div className="absolute -bottom-6 -left-4 bg-white rounded-2xl shadow-xl p-5 border border-gray-100 max-w-[200px]">
                 <p className="text-4xl font-black text-blue-700">8+</p>
-                <p className="text-gray-600 text-sm font-semibold">Years serving Houston businesses</p>
+                <p className="text-gray-600 text-sm font-semibold">Years serving Galveston County businesses</p>
               </div>
             </div>
             <div>
               <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Our Story</p>
-              <h2 className="text-4xl font-black text-gray-900 mb-6">Built for Houston's Business Community</h2>
+              <h2 className="text-4xl font-black text-gray-900 mb-6">Built for Galveston County's Business Community</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>Notary Solutions Houston was founded on a simple belief: Houston businesses deserve a notary partner who treats every signing with the same care and urgency their clients do.</p>
+                <p>Notary Solutions Galveston County was founded on a simple belief: Galveston County businesses deserve a notary partner who treats every signing with the same care and urgency their clients do.</p>
                 <p>After seeing closings delayed, loan packages rejected, and law firms struggling to find reliable coverage, we set out to do it right — training to the highest industry standards and building our practice around B2B client needs.</p>
-                <p>Today, we serve title companies, law firms, mortgage lenders, and businesses across Greater Houston. Our clients trust us because we've earned it — one signing at a time.</p>
+                <p>Today, we serve title companies, law firms, mortgage lenders, and businesses across Galveston County. Our clients trust us because we've earned it — one signing at a time.</p>
               </div>
               <div className="mt-8 grid grid-cols-2 gap-3">
                 {[

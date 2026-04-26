@@ -23,12 +23,12 @@ export default function Footer() {
               </div>
               <div>
                 <p className="text-white font-black text-lg leading-none">Notary Solutions</p>
-                <p className="text-blue-400 text-xs font-semibold">Houston, TX</p>
+                <p className="text-blue-400 text-xs font-semibold">Galveston County, TX</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-5 max-w-sm">
               Professional mobile notary services for real estate, law firms, mortgage
-              lenders, and businesses across Greater Houston. Certified, insured, always on time.
+              lenders, and businesses across Galveston County. Certified, insured, always on time.
             </p>
             <div className="inline-flex items-center gap-2 bg-green-900/40 border border-green-700/40 rounded-full px-3 py-1.5 text-sm text-green-400">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -56,8 +56,8 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', text: '(713) 555-0192', href: 'tel:+17135550192' },
-                { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', text: 'info@notarysolutionshouston.com', href: 'mailto:info@notarysolutionshouston.com' },
-                { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', text: 'Houston, TX & Greater Area', href: null },
+                { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', text: 'info@notarysolutionsgalveston.com', href: 'mailto:info@notarysolutionsgalveston.com' },
+                { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', text: 'Galveston County, TX', href: null },
                 { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', text: 'Mon–Sat 7am–8pm', href: null },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm">
@@ -75,7 +75,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Notary Solutions Houston. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Notary Solutions Galveston County. All rights reserved.</p>
           <div className="flex gap-2 flex-wrap justify-center">
             {['NNA Certified', 'LSS Certified', 'E&O Insured', 'Background Checked'].map(b => (
               <span key={b} className="bg-slate-800 text-slate-400 px-3 py-1 rounded-full">{b}</span>

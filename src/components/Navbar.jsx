@@ -42,7 +42,7 @@ export default function Navbar() {
                 Notary Solutions
               </p>
               <p className={`text-xs font-semibold ${transparent ? 'text-blue-200' : 'text-blue-600'}`}>
-                Houston, TX
+                Galveston County, TX
               </p>
             </div>
           </Link>

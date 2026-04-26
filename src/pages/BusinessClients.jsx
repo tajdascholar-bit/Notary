@@ -14,7 +14,7 @@ const tiers = [
     price: '$75',
     unit: 'per appointment',
     desc: 'Perfect for occasional needs.',
-    features: ['Single document packages', 'Mobile service in Houston', 'Next-day scheduling', 'Digital receipt'],
+    features: ['Single document packages', 'Mobile service in Galveston County', 'Next-day scheduling', 'Digital receipt'],
     cta: 'Book Now', to: '/contact', highlight: false,
   },
   {
@@ -53,7 +53,7 @@ export default function BusinessClients() {
           <div className="max-w-2xl">
             <p className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-4">Business Clients</p>
             <h1 className="text-5xl md:text-6xl font-black text-white mb-5 leading-tight">
-              Your Dedicated Notary Partner in Houston
+              Your Dedicated Notary Partner in Galveston County
             </h1>
             <p className="text-slate-300 text-xl leading-relaxed mb-8">
               Volume pricing, business accounts, and priority scheduling for title companies,
