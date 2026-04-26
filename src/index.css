@@ -1,16 +1,10 @@
 @import "tailwindcss";
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  #root {
-    width: 100%;
-    max-width: 100%;
-    text-align: left;
-  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; padding: 0; }
+  #root { width: 100%; max-width: 100%; text-align: left; }
 }
+
+/* Utility: navbar height offset for non-hero pages */
+.pt-18 { padding-top: 4.5rem; }

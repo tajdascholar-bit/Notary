@@ -1,321 +1,179 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { IMG } from '../lib/images'
 
-const serviceTypes = [
-  'Real Estate Closing',
-  'Legal Documents',
-  'Loan Signing',
-  'Corporate / Business Documents',
-  'Set Up Business Account',
-  'Other',
+const SERVICE_TYPES = [
+  'Real Estate Closing', 'Legal Documents', 'Loan Signing',
+  'Corporate / Business Documents', 'Power of Attorney',
+  'Affidavit / Sworn Statement', 'Will / Trust Documents',
+  'Set Up Business Account', 'Other',
 ]
 
-const contactInfo = [
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-      </svg>
-    ),
-    label: 'Phone',
-    value: '(713) 555-0192',
-    href: 'tel:+17135550192',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
-    label: 'Email',
-    value: 'info@notarysolutionshouston.com',
-    href: 'mailto:info@notarysolutionshouston.com',
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-      </svg>
-    ),
-    label: 'Service Area',
-    value: 'Houston, TX & Greater Houston',
-    href: null,
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    label: 'Hours',
-    value: 'Mon–Sat: 7am–8pm | Sun: By appointment',
-    href: null,
-  },
+const contactItems = [
+  { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', label: 'Phone', value: '(713) 555-0192', href: 'tel:+17135550192' },
+  { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', label: 'Email', value: 'info@notarysolutionshouston.com', href: 'mailto:info@notarysolutionshouston.com' },
+  { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', label: 'Service Area', value: 'Houston, TX & Greater Houston', href: null },
+  { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Hours', value: 'Mon–Sat 7am–8pm · Sun by appt', href: null },
 ]
+
+function Field({ label, required, children }) {
+  return (
+    <div>
+      <label className="block text-sm font-bold text-gray-700 mb-1.5">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      {children}
+    </div>
+  )
+}
+
+const inputCls = 'w-full border border-gray-200 bg-gray-50 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-colors'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    serviceType: '',
-    date: '',
-    message: '',
-    isBusinessAccount: false,
-  })
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', serviceType: '', date: '', message: '', isBusinessAccount: false })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (e) => {
+  const set = e => {
     const { name, value, type, checked } = e.target
-    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
+    setForm(f => ({ ...f, [name]: type === 'checkbox' ? checked : value }))
   }
 
   return (
-    <div>
-      {/* Header */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <div className="max-w-3xl">
-            <p className="text-blue-300 font-semibold uppercase tracking-widest text-sm mb-3">Contact & Booking</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-5">
+    <div className="pt-18">
+      {/* Hero */}
+      <section className="relative py-24 overflow-hidden">
+        <img src={IMG.hero} alt="Document" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 to-blue-950/80" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-4">Contact & Booking</p>
+            <h1 className="text-5xl md:text-6xl font-black text-white mb-5">
               Book a Notary or Set Up Your Account
             </h1>
-            <p className="text-blue-100 text-xl leading-relaxed">
-              Same-day appointments available. We respond to all business inquiries within 2 hours.
+            <p className="text-slate-300 text-xl">
+              Same-day appointments available. We respond within 2 hours.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-            <div className="space-y-5">
-              {contactInfo.map(item => (
-                <div key={item.label} className="flex items-start gap-4">
-                  <div className="w-11 h-11 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center shrink-0">
-                    {item.icon}
-                  </div>
+      <section className="bg-slate-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+            {/* Left: info */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Response guarantee card */}
+              <div className="relative overflow-hidden rounded-2xl">
+                <img src={IMG.b2bMeeting} alt="Professional" className="w-full h-48 object-cover" />
+                <div className="absolute inset-0 bg-slate-950/70 flex items-end p-6">
                   <div>
-                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} className="text-gray-900 hover:text-blue-700 font-medium">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-gray-900 font-medium">{item.value}</p>
-                    )}
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+                      <span className="text-green-400 font-bold text-sm">2-Hour Response Guarantee</span>
+                    </div>
+                    <p className="text-slate-300 text-sm">Monday–Saturday on all business inquiries.</p>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Response guarantee */}
-            <div className="mt-8 bg-green-50 border border-green-200 rounded-xl p-5">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div>
-                <p className="font-semibold text-green-800">2-Hour Response Guarantee</p>
               </div>
-              <p className="text-green-700 text-sm">
-                We respond to every business inquiry within 2 business hours —
-                Monday through Saturday.
-              </p>
-            </div>
 
-            {/* Calendly block */}
-            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-5">
-              <p className="font-semibold text-blue-900 mb-2">Prefer to Book Online?</p>
-              <p className="text-blue-700 text-sm mb-3">
-                Use our scheduling link to pick a time that works for you directly.
-              </p>
-              <a
-                href="#"
-                className="inline-block bg-blue-700 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors"
-              >
-                Open Scheduling Calendar
-              </a>
-            </div>
-          </div>
-
-          {/* Form */}
-          <div className="lg:col-span-2">
-            {submitted ? (
-              <div className="bg-green-50 border border-green-200 rounded-2xl p-12 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Request Received!</h3>
-                <p className="text-gray-600">
-                  Thank you, <strong>{formData.name}</strong>. We&apos;ll be in touch within 2 hours at{' '}
-                  <strong>{formData.email}</strong>.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-6 text-blue-700 font-semibold hover:text-blue-800 text-sm underline"
-                >
-                  Submit another request
-                </button>
+              {/* Contact details */}
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
+                {contactItems.map(item => (
+                  <div key={item.label} className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">{item.label}</p>
+                      {item.href
+                        ? <a href={item.href} className="text-gray-900 font-semibold text-sm hover:text-blue-700 transition-colors">{item.value}</a>
+                        : <p className="text-gray-900 font-semibold text-sm">{item.value}</p>}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm space-y-5">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Request a Notary</h2>
 
-                {/* Name + Company */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="name">
-                      Your Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Jane Smith"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
+              {/* Scheduling */}
+              <div className="bg-blue-700 rounded-2xl p-6 text-white">
+                <p className="font-black text-lg mb-2">Prefer to Pick a Time?</p>
+                <p className="text-blue-200 text-sm mb-4">Use our online scheduling calendar to book a specific slot instantly.</p>
+                <a href="#" className="block bg-white text-blue-700 font-black text-center py-3 rounded-xl hover:bg-blue-50 transition-colors text-sm">
+                  Open Scheduling Calendar
+                </a>
+              </div>
+            </div>
+
+            {/* Right: form */}
+            <div className="lg:col-span-3">
+              {submitted ? (
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-12 text-center h-full flex flex-col items-center justify-center">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="company">
-                      Company / Firm
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      placeholder="Smith & Associates Law"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
+                  <h3 className="text-2xl font-black text-gray-900 mb-2">Request Received!</h3>
+                  <p className="text-gray-600 mb-6">
+                    Thank you, <strong>{form.name}</strong>. We&apos;ll reach out to <strong>{form.email}</strong> within 2 hours.
+                  </p>
+                  <button onClick={() => setSubmitted(false)} className="text-blue-700 font-bold text-sm underline">
+                    Submit another request
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={e => { e.preventDefault(); setSubmitted(true) }} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 space-y-5">
+                  <h2 className="text-2xl font-black text-gray-900">Request a Notary</h2>
 
-                {/* Email + Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="email">
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="jane@example.com"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <Field label="Your Name" required>
+                      <input type="text" name="name" required value={form.name} onChange={set} placeholder="Jane Smith" className={inputCls} />
+                    </Field>
+                    <Field label="Company / Firm">
+                      <input type="text" name="company" value={form.company} onChange={set} placeholder="Optional" className={inputCls} />
+                    </Field>
+                    <Field label="Email" required>
+                      <input type="email" name="email" required value={form.email} onChange={set} placeholder="jane@example.com" className={inputCls} />
+                    </Field>
+                    <Field label="Phone">
+                      <input type="tel" name="phone" value={form.phone} onChange={set} placeholder="(713) 000-0000" className={inputCls} />
+                    </Field>
+                    <Field label="Service Needed" required>
+                      <select name="serviceType" required value={form.serviceType} onChange={set} className={inputCls + ' bg-gray-50'}>
+                        <option value="">Select...</option>
+                        {SERVICE_TYPES.map(s => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                    </Field>
+                    <Field label="Preferred Date">
+                      <input type="date" name="date" value={form.date} onChange={set} className={inputCls} />
+                    </Field>
                   </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="phone">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="(713) 000-0000"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
 
-                {/* Service Type + Date */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="serviceType">
-                      Service Needed <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="serviceType"
-                      name="serviceType"
-                      required
-                      value={formData.serviceType}
-                      onChange={handleChange}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                    >
-                      <option value="">Select a service...</option>
-                      {serviceTypes.map(s => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="date">
-                      Preferred Date
-                    </label>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
+                  <Field label="Additional Details">
+                    <textarea name="message" rows={4} value={form.message} onChange={set} placeholder="Describe your needs, document types, location, or special requirements..." className={inputCls + ' resize-none'} />
+                  </Field>
 
-                {/* Message */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5" htmlFor="message">
-                    Additional Details
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input type="checkbox" name="isBusinessAccount" checked={form.isBusinessAccount} onChange={set} className="mt-1 h-4 w-4 text-blue-600 rounded" />
+                    <span className="text-sm text-gray-700">
+                      <strong>Interested in a business account</strong> — volume pricing, monthly invoicing, and priority scheduling.
+                    </span>
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Describe your notary needs, document types, location, or any special requirements..."
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  />
-                </div>
 
-                {/* Business account checkbox */}
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    name="isBusinessAccount"
-                    checked={formData.isBusinessAccount}
-                    onChange={handleChange}
-                    className="mt-0.5 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700">
-                    <strong>I am interested in setting up a business account</strong> (volume pricing,
-                    monthly invoicing, and priority scheduling)
-                  </span>
-                </label>
-
-                <button
-                  type="submit"
-                  className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 rounded-lg text-lg transition-colors"
-                >
-                  Submit Request
-                </button>
-                <p className="text-center text-gray-500 text-xs">
-                  We will respond within 2 hours on business days. Your information is kept confidential.
-                </p>
-              </form>
-            )}
+                  <button type="submit" className="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-4 rounded-2xl text-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-700/20">
+                    Submit Request
+                  </button>
+                  <p className="text-center text-gray-400 text-xs">
+                    We respond within 2 hours on business days. Your information is kept confidential.
+                  </p>
+                </form>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

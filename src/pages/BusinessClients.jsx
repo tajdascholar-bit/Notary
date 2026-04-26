@@ -1,242 +1,133 @@
 import { Link } from 'react-router-dom'
+import { IMG } from '../lib/images'
 
-const targetClients = [
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    ),
-    title: 'Title Companies',
-    desc: 'We are listed on Snapdocs and available for direct signing assignments. Real-time status updates on every closing.',
-    perks: ['Snapdocs-integrated', 'E&O insured', 'Background-checked'],
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-      </svg>
-    ),
-    title: 'Law Firms',
-    desc: 'Office visits on demand. We handle affidavits, POA, trust documents, and court filings with the discretion your firm requires.',
-    perks: ['Office visits available', 'Bulk signing packages', 'Confidential handling'],
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    title: 'Mortgage Lenders',
-    desc: 'NNA-certified signing agent for all loan packages. We meet lender compliance standards and provide signing confirmations.',
-    perks: ['NNA certified', 'Lender-compliant', 'Signing confirmations'],
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-    title: 'Corporations & HR Teams',
-    desc: 'On-site notary visits for employee onboarding, contracts, and corporate governance documents. Schedule recurring visits.',
-    perks: ['On-site visits', 'Bulk employee signings', 'Recurring scheduling'],
-  },
+const industries = [
+  { img: IMG.realEstate, title: 'Title Companies', desc: 'Snapdocs-integrated, E&O insured, and background-checked. We receive direct signing orders and deliver real-time status updates on every closing.', tags: ['Snapdocs', 'ServiceLink', 'E&O Insured'] },
+  { img: IMG.legal, title: 'Law Firms', desc: 'Office visits on demand. Affidavits, POA, trust documents, and court filings handled with the discretion your firm requires.', tags: ['Office Visits', 'Bulk Packages', 'Confidential'] },
+  { img: IMG.loan, title: 'Mortgage Lenders', desc: 'NNA-certified signing agent for all loan packages. We meet lender compliance standards and provide signing confirmations every time.', tags: ['NNA Certified', 'Lender-Compliant', 'Confirmations'] },
+  { img: IMG.corporate, title: 'Corporations & HR', desc: 'On-site notary visits for employee onboarding, contracts, and governance documents. Schedule recurring monthly visits.', tags: ['On-Site Visits', 'Bulk Signings', 'Recurring'] },
 ]
 
-const pricingTiers = [
+const tiers = [
   {
     name: 'Pay-Per-Signing',
     price: '$75',
     unit: 'per appointment',
-    description: 'Perfect for occasional notarization needs.',
-    features: [
-      'Single document packages',
-      'Mobile service within Houston',
-      'Next-day scheduling',
-      'Digital receipt provided',
-    ],
-    cta: 'Book Now',
-    highlight: false,
+    desc: 'Perfect for occasional needs.',
+    features: ['Single document packages', 'Mobile service in Houston', 'Next-day scheduling', 'Digital receipt'],
+    cta: 'Book Now', to: '/contact', highlight: false,
   },
   {
     name: 'Business Account',
     price: '$55',
-    unit: 'per signing (volume)',
-    description: 'For firms with 5+ signings per month.',
-    features: [
-      'All pay-per-signing features',
-      'Priority same-day scheduling',
-      'Monthly invoicing',
-      'Dedicated account contact',
-      'Volume discount pricing',
-      'Online portal access',
-    ],
-    cta: 'Set Up Account',
-    highlight: true,
+    unit: 'per signing (5+ / month)',
+    desc: 'Best for firms with regular volume.',
+    features: ['All pay-per-signing features', 'Priority same-day scheduling', 'Monthly invoicing', 'Dedicated account contact', 'Volume discounts', 'Online portal access'],
+    cta: 'Set Up Account', to: '/contact', highlight: true,
   },
   {
     name: 'Enterprise',
     price: 'Custom',
     unit: 'negotiated rate',
-    description: 'For high-volume title companies and lenders.',
-    features: [
-      'All Business Account features',
-      'Snapdocs / ServiceLink integration',
-      'Bulk signing batches',
-      'Dedicated notary team',
-      'SLA-backed turnaround',
-      'Quarterly account review',
-    ],
-    cta: 'Contact Us',
-    highlight: false,
+    desc: 'For high-volume title companies and lenders.',
+    features: ['All Business Account features', 'Snapdocs / ServiceLink integration', 'Bulk signing batches', 'SLA-backed turnaround', 'Quarterly account review'],
+    cta: 'Contact Us', to: '/contact', highlight: false,
   },
 ]
 
-const howItWorks = [
-  {
-    step: '01',
-    title: 'Contact Us',
-    desc: 'Fill out our business inquiry form or call us directly. We respond within 2 hours.',
-  },
-  {
-    step: '02',
-    title: 'Account Setup',
-    desc: 'We create your business profile, establish pricing, and set up invoicing preferences.',
-  },
-  {
-    step: '03',
-    title: 'Book Anytime',
-    desc: 'Submit signing requests via phone, email, or our online booking portal.',
-  },
-  {
-    step: '04',
-    title: 'We Handle It',
-    desc: 'Our team confirms, executes, and reports back on every signing — consistently.',
-  },
+const steps = [
+  { n: '01', title: 'Contact Us', desc: 'Fill out the business inquiry form or call directly. We respond within 2 hours.' },
+  { n: '02', title: 'Account Setup', desc: 'We create your business profile, set pricing, and configure invoicing.' },
+  { n: '03', title: 'Book Anytime', desc: 'Submit signing requests via phone, email, or our online portal.' },
+  { n: '04', title: 'We Handle It', desc: 'We confirm, execute, and report back on every signing — consistently.' },
 ]
 
 export default function BusinessClients() {
   return (
-    <div>
-      {/* Header */}
-      <section className="bg-gradient-to-br from-indigo-900 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <div className="max-w-3xl">
-            <p className="text-blue-300 font-semibold uppercase tracking-widest text-sm mb-3">Business Clients</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-5">
+    <div className="pt-18">
+      {/* Hero */}
+      <section className="relative py-28 overflow-hidden">
+        <img src={IMG.b2bMeeting} alt="Business meeting" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 to-blue-950/80" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-4">Business Clients</p>
+            <h1 className="text-5xl md:text-6xl font-black text-white mb-5 leading-tight">
               Your Dedicated Notary Partner in Houston
             </h1>
-            <p className="text-blue-100 text-xl leading-relaxed">
+            <p className="text-slate-300 text-xl leading-relaxed mb-8">
               Volume pricing, business accounts, and priority scheduling for title companies,
               law firms, mortgage lenders, and corporations.
             </p>
-            <Link
-              to="/contact"
-              className="inline-block mt-8 bg-white text-blue-800 font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-50 transition-colors"
-            >
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-black px-8 py-4 rounded-2xl text-lg transition-all hover:-translate-y-0.5">
               Set Up Your Business Account
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Who We Serve */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Industries We Serve
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            We understand the demands of your industry — tight deadlines, compliance requirements,
-            and the need for a notary you can rely on every time.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {targetClients.map(client => (
-            <div key={client.title} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all">
-              <div className="w-14 h-14 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4">
-                {client.icon}
+      {/* Industries */}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Industries We Serve</p>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900">Built for Your Industry</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {industries.map(ind => (
+              <div key={ind.title} className="group rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+                <div className="relative h-48 overflow-hidden">
+                  <img src={ind.img} alt={ind.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+                  <h3 className="absolute bottom-4 left-4 text-white font-black text-xl">{ind.title}</h3>
+                </div>
+                <div className="p-5">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{ind.desc}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {ind.tags.map(tag => (
+                      <span key={tag} className="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">{client.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">{client.desc}</p>
-              <ul className="space-y-1">
-                {client.perks.map(perk => (
-                  <li key={perk} className="flex items-center gap-2 text-sm text-gray-700">
-                    <svg className="w-4 h-4 text-green-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {perk}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Pricing */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-gray-600 text-lg">
-              No hidden fees. Volume pricing for repeat business clients.
-            </p>
+          <div className="text-center mb-14">
+            <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Pricing</p>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3">Simple, Transparent Pricing</h2>
+            <p className="text-gray-500 text-lg">No hidden fees. Volume pricing for business clients.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {pricingTiers.map(tier => (
-              <div
-                key={tier.name}
-                className={`rounded-2xl p-8 ${
-                  tier.highlight
-                    ? 'bg-blue-700 text-white shadow-xl scale-105'
-                    : 'bg-white border border-gray-200'
-                }`}
-              >
+            {tiers.map(tier => (
+              <div key={tier.name} className={`rounded-3xl p-8 relative ${tier.highlight ? 'bg-blue-700 text-white shadow-2xl shadow-blue-700/30 scale-105' : 'bg-white border border-gray-200 shadow-sm'}`}>
                 {tier.highlight && (
-                  <span className="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">
-                    MOST POPULAR
-                  </span>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-amber-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg">MOST POPULAR</span>
+                  </div>
                 )}
-                <h3 className={`text-xl font-bold mb-1 ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>
-                  {tier.name}
-                </h3>
-                <div className="mb-2">
-                  <span className={`text-4xl font-bold ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>
-                    {tier.price}
-                  </span>
-                  <span className={`text-sm ml-1 ${tier.highlight ? 'text-blue-200' : 'text-gray-500'}`}>
-                    {tier.unit}
-                  </span>
+                <p className={`font-black text-xl mb-1 ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.name}</p>
+                <div className="mb-1">
+                  <span className={`text-5xl font-black ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.price}</span>
+                  <span className={`text-sm ml-1 ${tier.highlight ? 'text-blue-200' : 'text-gray-500'}`}>{tier.unit}</span>
                 </div>
-                <p className={`text-sm mb-6 ${tier.highlight ? 'text-blue-200' : 'text-gray-600'}`}>
-                  {tier.description}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {tier.features.map(feature => (
-                    <li key={feature} className="flex items-start gap-2 text-sm">
-                      <svg
-                        className={`w-5 h-5 shrink-0 mt-0.5 ${tier.highlight ? 'text-blue-200' : 'text-green-600'}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                <p className={`text-sm mb-6 ${tier.highlight ? 'text-blue-200' : 'text-gray-500'}`}>{tier.desc}</p>
+                <ul className="space-y-2.5 mb-8">
+                  {tier.features.map(f => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <svg className={`w-5 h-5 shrink-0 mt-0.5 ${tier.highlight ? 'text-blue-200' : 'text-green-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className={tier.highlight ? 'text-blue-100' : 'text-gray-700'}>{feature}</span>
+                      <span className={tier.highlight ? 'text-blue-100' : 'text-gray-700'}>{f}</span>
                     </li>
                   ))}
                 </ul>
-                <Link
-                  to="/contact"
-                  className={`block text-center font-bold py-3 rounded-lg transition-colors ${
-                    tier.highlight
-                      ? 'bg-white text-blue-700 hover:bg-blue-50'
-                      : 'bg-blue-700 text-white hover:bg-blue-800'
-                  }`}
-                >
+                <Link to={tier.to} className={`block text-center font-black py-3.5 rounded-xl transition-colors ${tier.highlight ? 'bg-white text-blue-700 hover:bg-blue-50' : 'bg-blue-700 text-white hover:bg-blue-800'}`}>
                   {tier.cta}
                 </Link>
               </div>
@@ -246,43 +137,34 @@ export default function BusinessClients() {
       </section>
 
       {/* How it works */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How Business Accounts Work
-          </h2>
-          <p className="text-gray-600 text-lg">Getting started is fast and easy.</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {howItWorks.map((step, i) => (
-            <div key={step.step} className="relative">
-              {i < howItWorks.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-blue-200 -translate-x-1/2 z-0" />
-              )}
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-blue-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
-                  {step.step}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-3">Process</p>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900">How Business Accounts Work</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((step, i) => (
+              <div key={step.n} className="text-center">
+                <div className="w-16 h-16 bg-blue-700 text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-4 shadow-lg shadow-blue-700/30">
+                  {step.n}
                 </div>
-                <h3 className="font-bold text-gray-900 text-lg mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                <h3 className="font-black text-gray-900 text-lg mb-2">{step.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Set Up Your Business Account?</h2>
-          <p className="text-blue-200 text-lg mb-8 max-w-xl mx-auto">
-            Fill out our business inquiry form and we will contact you within 2 hours to
-            discuss your needs and get you set up.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-white text-blue-700 font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-50 transition-colors"
-          >
+      <section className="relative py-20 overflow-hidden">
+        <img src={IMG.b2bMeeting} alt="Business" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-blue-950/90" />
+        <div className="relative max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-black text-white mb-4">Ready to Partner With Us?</h2>
+          <p className="text-blue-200 text-lg mb-8">We respond to all business inquiries within 2 hours.</p>
+          <Link to="/contact" className="inline-block bg-amber-500 hover:bg-amber-400 text-white font-black px-10 py-4 rounded-2xl text-lg transition-all hover:-translate-y-0.5">
             Start Your Business Account
           </Link>
         </div>
