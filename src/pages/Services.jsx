@@ -42,6 +42,16 @@ const categories = [
     highlight: 'On-site corporate visits available — we come to your office',
     accentColor: 'violet',
   },
+  {
+    id: 'online-notarial',
+    img: IMG.online,
+    title: 'Online Notarial Services',
+    badge: 'Remote · Anywhere in Texas',
+    desc: 'Get documents notarized from anywhere in Texas via secure video call. Our Remote Online Notarization (RON) service is fully compliant with Texas law — no travel required, no delays.',
+    items: ['Remote Online Notarization (RON)', 'Secure video-verified identity', 'Digital certificate & e-seal', 'Real estate & loan documents', 'Legal affidavits & POA', 'Trust & estate documents', 'Same-day scheduling available', 'Tamper-evident digital records'],
+    highlight: 'Texas RON-authorized — legally equivalent to in-person notarization',
+    accentColor: 'cyan',
+  },
 ]
 
 const colorMap = {
@@ -49,6 +59,7 @@ const colorMap = {
   indigo:  { badge: 'bg-indigo-100 text-indigo-800', ring: 'ring-indigo-200', icon: 'text-indigo-600' },
   emerald: { badge: 'bg-emerald-100 text-emerald-800', ring: 'ring-emerald-200', icon: 'text-emerald-600' },
   violet:  { badge: 'bg-violet-100 text-violet-800', ring: 'ring-violet-200', icon: 'text-violet-600' },
+  cyan:    { badge: 'bg-cyan-100 text-cyan-800',    ring: 'ring-cyan-200',   icon: 'text-cyan-600'   },
 }
 
 export default function Services() {
@@ -90,7 +101,7 @@ export default function Services() {
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
                       <div className="absolute bottom-6 left-6">
                         <span className="bg-white/90 backdrop-blur text-slate-900 text-sm font-bold px-4 py-2 rounded-full">
-                          Available Same-Day
+                          {cat.id === 'online-notarial' ? 'Available Online · Statewide' : 'Available Same-Day'}
                         </span>
                       </div>
                     </div>

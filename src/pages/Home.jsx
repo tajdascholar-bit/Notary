@@ -6,6 +6,7 @@ const services = [
   { title: 'Legal Documents', img: IMG.legal, desc: 'Affidavits, power of attorney, wills, and court-required notarizations.', to: '/services#legal', color: 'from-indigo-900' },
   { title: 'Loan Signings', img: IMG.loan, desc: 'Certified signing agent for mortgage, refinance, and HELOC packages.', to: '/services#loan-signings', color: 'from-slate-900' },
   { title: 'Corporate Notarizations', img: IMG.corporate, desc: 'Contracts, resolutions, and employee document notarizations on-site.', to: '/services#corporate', color: 'from-blue-950' },
+  { title: 'Online Notarial Services', img: IMG.online, desc: 'Texas RON-authorized remote notarization via secure video call — anywhere in the state.', to: '/services#online-notarial', color: 'from-cyan-900' },
 ]
 
 const stats = [
@@ -93,7 +94,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {services.map(s => (
               <Link
                 key={s.title}
